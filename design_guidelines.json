@@ -1,0 +1,93 @@
+{
+  "theme": {
+    "mode": "light_and_dark",
+    "archetype": "Archetype 4 (Swiss & High-Contrast) + Editorial Future",
+    "description": "A developer-oriented editorial site. High-contrast prints meet dark IDE terminals. Bold asymmetry, kinetic typography, and raw functionality."
+  },
+  "colors": {
+    "light": {
+      "background": "#F4F4F0",
+      "surface": "#FFFFFF",
+      "foreground": "#111111",
+      "muted": "#8A8A8A",
+      "border": "#E5E5E5",
+      "primary": "#E53935",
+      "primary_foreground": "#FFFFFF",
+      "code_background": "#1A1A1A",
+      "code_foreground": "#E0E0E0"
+    },
+    "dark": {
+      "background": "#050505",
+      "surface": "#121212",
+      "foreground": "#F5F5F5",
+      "muted": "#A3A3A3",
+      "border": "#2A2A2A",
+      "primary": "#FF3B30",
+      "primary_foreground": "#FFFFFF",
+      "code_background": "#0A0A0A",
+      "code_foreground": "#E0E0E0"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Cormorant Garamond",
+      "body": "Satoshi",
+      "mono": "JetBrains Mono"
+    },
+    "hierarchy": {
+      "h1": "text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter leading-none",
+      "h2": "text-3xl md:text-4xl font-normal tracking-tight leading-none",
+      "h3": "text-xl md:text-2xl font-body font-medium tracking-tight",
+      "body": "text-base md:text-lg font-body text-muted-foreground leading-relaxed",
+      "eyebrow": "text-xs md:text-sm font-mono tracking-[0.2em] uppercase text-primary"
+    }
+  },
+  "spacing_and_layout": {
+    "padding_scale": "Generous: p-6, p-12, p-24, p-32",
+    "grid_strategy": "Asymmetric Bento (Mode A). grid-cols-1 md:grid-cols-12 with 3-column offsets for tension.",
+    "container": "Max width 1440px, massive horizontal padding (px-6 md:px-12) to avoid edges."
+  },
+  "components": {
+    "cards": "Sharp edges (0px) or max 4px radius. 1px solid borders. No soft shadows. In dark mode, pure 1px #2A2A2A borders.",
+    "buttons": "Square edges, high contrast. Primary: solid color (Red) or Inverse (Black/White). Secondary: Outline with monospace text.",
+    "code_blocks": "Syntax highlighting via Prism/Shiki using JetBrains Mono. Styled as raw terminal windows with brutalist mono headers. Dark background in both themes for contrast.",
+    "navigation": "Sticky, crystal glassmorphism blur (backdrop-blur-xl) with a sharp 1px bottom border. Include theme toggle here."
+  },
+  "motion": {
+    "hero": "Staggered word reveal for H1. Subtle floating animations for background imagery.",
+    "scroll": "Smooth scrolling via Lenis. Fade-up + slight Y-translate for sections on intersect.",
+    "interactions": "Hover states on bento cards shift border color to primary and slight -translate-y-1."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "slug": "hero_graph_abstract",
+        "url": "https://static.prod-images.emergentagent.com/jobs/94f936ad-b0ac-4f25-baf2-795b8210c2b3/images/a0ade7adf6a2d19080bb65cc738f9655ff16e6fbdad0d5775de5e3419f707bc7.png",
+        "category": "hero_background",
+        "description": "Wide-angle abstract 3D render of a glowing temporal knowledge graph. Use with max 40% opacity overlay."
+      },
+      {
+        "slug": "memory_layer_viz",
+        "url": "https://static.prod-images.emergentagent.com/jobs/94f936ad-b0ac-4f25-baf2-795b8210c2b3/images/9c0967f4383e4da87fa309c8829d7d73297a1bc2a27ef7cbfae28c7d7a2c9f3a.png",
+        "category": "architecture_section",
+        "description": "Abstract architectural 3D visualization of memory layers."
+      },
+      {
+        "slug": "supersession_chain",
+        "url": "https://static.prod-images.emergentagent.com/jobs/94f936ad-b0ac-4f25-baf2-795b8210c2b3/images/3cbe591fb10458b9c41c548875d85ca5c225086c8c244a23449b2fdd64b611e6.png",
+        "category": "features_section",
+        "description": "Close-up macro shot of a complex timeline evolving, overlapping translucent data chains."
+      }
+    ]
+  },
+  "sections_direction": {
+    "hero": "Left-aligned massive Cormorant Garamond typography. 'amnesiac' must be italicized for editorial feel. Background features hero_graph_abstract with gradient overlay. CTA button + Quick Start link.",
+    "problem": "3-column asymmetric layout comparing failure modes (Chat history, Vector stores, RAG). Monospaced eyebrows over large serif problem statements.",
+    "how_it_works": "Vertical scrolling steps (01, 02, 03) in massive monospace numerals. Left side sticks, right side scrolls featuring dynamic code blocks and graph visualizations.",
+    "architecture": "Full-width section with memory_layer_viz image. 5 layers listed clearly using grid system. Deep background contrast.",
+    "differentiators": "Bento Grid (Tetris Mode A). Staggered sizes. E.g., 3-Lane Retrieval gets col-span-8, MCP-Native gets col-span-4. Monospace labels with sharp borders.",
+    "quick_start": "Brutalist terminal UI for the MCP config JSON snippet. 'Up in minutes.' in large serif H2.",
+    "footer": "Massive typography 'Give your agent a lifetime', 1px top border, minimalist layout, right-aligned nav links."
+  },
+  "instructions_to_main_agent": "Ensure full light/dark mode support using Tailwind 'dark:' variants. Use 'Cormorant Garamond' for headings, 'JetBrains Mono' for eyebrows/code/ordinals, and 'Satoshi' for body text. Enforce strict 1px solid borders for containers. No rounded corners above 4px. Use lucide-react icons. Add data-testid to all interactive elements. Install required fonts from Google Fonts."
+}
