@@ -37,30 +37,30 @@ pre {
 
 @layer base {
     :root {
-        /* Single locked dark palette. Phosphor lime + cool ice. */
-        --background: 0 0% 4%;           /* #0A0A0A */
-        --surface: 0 0% 7%;              /* #121212 */
-        --surface-2: 0 0% 9%;            /* #171717 */
-        --foreground: 48 18% 94%;        /* #F0EFE8 warm bone */
-        --card: 0 0% 7%;
-        --card-foreground: 48 18% 94%;
-        --popover: 0 0% 7%;
-        --popover-foreground: 48 18% 94%;
-        --primary: 75 100% 61%;          /* #C8FF3A phosphor lime */
-        --primary-foreground: 0 0% 4%;
-        --secondary: 0 0% 14%;
-        --secondary-foreground: 48 18% 94%;
-        --muted: 0 0% 11%;
-        --muted-foreground: 48 8% 56%;   /* #928F85 */
-        --accent: 210 90% 78%;           /* #8CC8FF cool ice */
-        --accent-foreground: 0 0% 4%;
-        --destructive: 0 62.8% 30.6%;
+        /* Pure black palette — aurora cyan primary, violet accent. */
+        --background: 0 0% 0%;           /* #000000 — pure black */
+        --surface: 0 0% 5%;              /* #0D0D0D */
+        --surface-2: 0 0% 8%;            /* #141414 */
+        --foreground: 0 0% 95%;          /* #F2F2F2 — near-white */
+        --card: 0 0% 5%;
+        --card-foreground: 0 0% 95%;
+        --popover: 0 0% 5%;
+        --popover-foreground: 0 0% 95%;
+        --primary: 189 83% 72%;          /* #7DE3F4 — aurora cyan */
+        --primary-foreground: 0 0% 0%;
+        --secondary: 0 0% 12%;
+        --secondary-foreground: 0 0% 95%;
+        --muted: 0 0% 9%;
+        --muted-foreground: 0 0% 56%;    /* #8F8F8F */
+        --accent: 270 85% 82%;           /* #C9A7FF — soft violet */
+        --accent-foreground: 0 0% 0%;
+        --destructive: 0 62.8% 40%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 15%;              /* #262626 */
-        --input: 0 0% 15%;
-        --ring: 75 100% 61%;
-        --code-bg: 0 0% 3%;
-        --code-fg: 48 18% 90%;
+        --border: 0 0% 13%;              /* #212121 */
+        --input: 0 0% 13%;
+        --ring: 189 83% 72%;
+        --code-bg: 0 0% 0%;
+        --code-fg: 0 0% 90%;
         --radius: 2px;
     }
 }
@@ -78,7 +78,6 @@ pre {
         color: hsl(var(--primary-foreground));
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
         width: 10px;
         height: 10px;
@@ -103,13 +102,37 @@ pre {
         box-shadow: 0 0 0 1px hsl(var(--border));
     }
 
+    /* Clean dot pattern — minimal noise over pure black */
+    .dot-grid {
+        background-image: radial-gradient(
+            hsl(var(--border)) 1px,
+            transparent 1px
+        );
+        background-size: 24px 24px;
+    }
+
+    .mono-grid {
+        background-image:
+            linear-gradient(
+                to right,
+                hsl(var(--border)) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                hsl(var(--border)) 1px,
+                transparent 1px
+            );
+        background-size: 64px 64px;
+    }
+
     .grain::before {
         content: "";
         position: absolute;
         inset: 0;
         pointer-events: none;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-        opacity: 0.05;
+        opacity: 0.04;
         mix-blend-mode: overlay;
     }
 
@@ -126,21 +149,6 @@ pre {
         font-weight: 300;
         letter-spacing: -0.02em;
         line-height: 0.95;
-    }
-
-    .dot-grid {
-        background-image: radial-gradient(
-            hsl(var(--border)) 1px,
-            transparent 1px
-        );
-        background-size: 24px 24px;
-    }
-
-    .mono-grid {
-        background-image:
-            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-        background-size: 64px 64px;
     }
 
     .marquee-track {
@@ -229,7 +237,24 @@ pre {
     }
 
     .glow-primary {
-        filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.45));
+        filter: drop-shadow(0 0 14px hsla(189, 83%, 72%, 0.55));
+    }
+
+    /* Subtle floating drift for distant stars */
+    .drift {
+        animation: drift 120s linear infinite;
+    }
+
+    @keyframes drift {
+        0% {
+            background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+                0 0, 0 0;
+        }
+        100% {
+            background-position: -120px -60px, 80px -40px, -40px 80px,
+                60px 100px, -100px 30px, 40px -80px, -60px 120px, 30px -40px,
+                -80px 60px, 0 0, 0 0;
+        }
     }
 }
 
