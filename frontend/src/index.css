@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-    color-scheme: light;
+    color-scheme: dark;
 }
 
-html.dark {
-    color-scheme: dark;
+html {
+    background-color: hsl(var(--background));
+    scroll-behavior: smooth;
 }
 
 body {
@@ -36,53 +37,31 @@ pre {
 
 @layer base {
     :root {
-        --background: 60 11% 95%; /* #F4F4F0 */
-        --surface: 0 0% 100%;
-        --foreground: 0 0% 7%; /* #111 */
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 7%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 7%;
-        --primary: 4 78% 56%; /* #E53935 */
-        --primary-foreground: 0 0% 100%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 92%;
-        --muted-foreground: 0 0% 38%;
-        --accent: 0 0% 88%;
-        --accent-foreground: 0 0% 7%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 85%;
-        --input: 0 0% 85%;
-        --ring: 0 0% 7%;
-        --code-bg: 0 0% 6%;
-        --code-fg: 0 0% 88%;
-        --radius: 2px;
-    }
-    .dark {
-        --background: 0 0% 2%; /* #050505 */
-        --surface: 0 0% 7%; /* #121212 */
-        --foreground: 0 0% 96%; /* #F5F5F5 */
+        /* Single locked dark palette. Phosphor lime + cool ice. */
+        --background: 0 0% 4%;           /* #0A0A0A */
+        --surface: 0 0% 7%;              /* #121212 */
+        --surface-2: 0 0% 9%;            /* #171717 */
+        --foreground: 48 18% 94%;        /* #F0EFE8 warm bone */
         --card: 0 0% 7%;
-        --card-foreground: 0 0% 96%;
+        --card-foreground: 48 18% 94%;
         --popover: 0 0% 7%;
-        --popover-foreground: 0 0% 96%;
-        --primary: 4 100% 59%; /* #FF3B30 */
-        --primary-foreground: 0 0% 100%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 96%;
-        --muted: 0 0% 13%;
-        --muted-foreground: 0 0% 64%;
-        --accent: 0 0% 16%;
-        --accent-foreground: 0 0% 96%;
+        --popover-foreground: 48 18% 94%;
+        --primary: 75 100% 61%;          /* #C8FF3A phosphor lime */
+        --primary-foreground: 0 0% 4%;
+        --secondary: 0 0% 14%;
+        --secondary-foreground: 48 18% 94%;
+        --muted: 0 0% 11%;
+        --muted-foreground: 48 8% 56%;   /* #928F85 */
+        --accent: 210 90% 78%;           /* #8CC8FF cool ice */
+        --accent-foreground: 0 0% 4%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 16%; /* #2A2A2A */
-        --input: 0 0% 16%;
-        --ring: 0 0% 83%;
+        --border: 0 0% 15%;              /* #262626 */
+        --input: 0 0% 15%;
+        --ring: 75 100% 61%;
         --code-bg: 0 0% 3%;
-        --code-fg: 0 0% 88%;
+        --code-fg: 48 18% 90%;
+        --radius: 2px;
     }
 }
 
@@ -97,6 +76,21 @@ pre {
     ::selection {
         background-color: hsl(var(--primary));
         color: hsl(var(--primary-foreground));
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--background));
+    }
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--border));
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--muted-foreground));
     }
 }
 
@@ -115,12 +109,16 @@ pre {
         inset: 0;
         pointer-events: none;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-        opacity: 0.06;
+        opacity: 0.05;
         mix-blend-mode: overlay;
     }
 
     .eyebrow {
-        @apply font-mono text-[11px] md:text-xs tracking-[0.22em] uppercase text-[hsl(var(--primary))];
+        @apply font-mono text-[11px] md:text-xs tracking-[0.24em] uppercase text-[hsl(var(--primary))];
+    }
+
+    .eyebrow-muted {
+        @apply font-mono text-[10px] md:text-[11px] tracking-[0.24em] uppercase text-muted-foreground;
     }
 
     .serif-display {
@@ -138,8 +136,15 @@ pre {
         background-size: 24px 24px;
     }
 
+    .mono-grid {
+        background-image:
+            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+        background-size: 64px 64px;
+    }
+
     .marquee-track {
-        animation: marquee 35s linear infinite;
+        animation: marquee 45s linear infinite;
     }
 
     @keyframes marquee {
@@ -165,19 +170,6 @@ pre {
         }
     }
 
-    .blink-caret::after {
-        content: "_";
-        animation: blink 1.05s steps(1) infinite;
-        color: hsl(var(--primary));
-        margin-left: 2px;
-    }
-
-    @keyframes blink {
-        50% {
-            opacity: 0;
-        }
-    }
-
     .pulse-dot {
         animation: pulseDot 2s ease-in-out infinite;
     }
@@ -185,13 +177,59 @@ pre {
     @keyframes pulseDot {
         0%,
         100% {
-            opacity: 0.35;
+            opacity: 0.4;
             transform: scale(1);
         }
         50% {
             opacity: 1;
-            transform: scale(1.15);
+            transform: scale(1.2);
         }
+    }
+
+    .flow-dash {
+        stroke-dasharray: 4 6;
+        animation: flowDash 1.2s linear infinite;
+    }
+
+    @keyframes flowDash {
+        to {
+            stroke-dashoffset: -20;
+        }
+    }
+
+    .ring-pulse {
+        animation: ringPulse 2.4s ease-out infinite;
+        transform-origin: center;
+    }
+
+    @keyframes ringPulse {
+        0% {
+            transform: scale(0.8);
+            opacity: 0.9;
+        }
+        100% {
+            transform: scale(2.6);
+            opacity: 0;
+        }
+    }
+
+    .node-enter {
+        animation: nodeEnter 0.6s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+    }
+
+    @keyframes nodeEnter {
+        0% {
+            opacity: 0;
+            transform: scale(0.4);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .glow-primary {
+        filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.45));
     }
 }
 
