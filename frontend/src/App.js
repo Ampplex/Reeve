@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "@/App.css";
 import {
   ArrowUpRight,
@@ -19,13 +19,40 @@ import {
   Sparkles,
   ShieldCheck,
   Zap,
+  Sun,
+  Moon,
 } from "lucide-react";
 import GraphSimulator from "@/components/GraphSimulator";
 
 /* ------------------------------------------------------------------ */
+/*  Theme                                                              */
+/* ------------------------------------------------------------------ */
+const useTheme = () => {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const stored = localStorage.getItem("reeve-theme");
+    const initial = stored === "light" ? "light" : "dark";
+    setTheme(initial);
+    document.documentElement.classList.toggle("light", initial === "light");
+  }, []);
+
+  const toggle = useCallback(() => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      document.documentElement.classList.toggle("light", next === "light");
+      localStorage.setItem("reeve-theme", next);
+      return next;
+    });
+  }, []);
+
+  return { theme, toggle };
+};
+
+/* ------------------------------------------------------------------ */
 /*  Nav                                                                */
 /* ------------------------------------------------------------------ */
-const Nav = () => (
+const Nav = ({ theme, toggle }) => (
   <nav
     data-testid="main-nav"
     className="sticky top-0 z-50 w-full border-b border-border bg-background/75 backdrop-blur-xl"
@@ -60,6 +87,14 @@ const Nav = () => (
         </a>
       </div>
       <div className="flex items-center gap-3">
+        <button
+          aria-label="Toggle theme"
+          onClick={toggle}
+          data-testid="theme-toggle"
+          className="flex h-9 w-9 items-center justify-center border border-border hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-colors"
+        >
+          {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+        </button>
         <a
           href="https://github.com"
           target="_blank"
@@ -1204,9 +1239,10 @@ const Footer = () => (
 /*  Root                                                               */
 /* ------------------------------------------------------------------ */
 export default function App() {
+  const { theme, toggle } = useTheme();
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-[hsl(var(--primary))] selection:text-[hsl(var(--primary-foreground))]">
-      <Nav />
+      <Nav theme={theme} toggle={toggle} />
       <main>
         <Hero />
         <CompatStrip />

@@ -6,6 +6,10 @@
     color-scheme: dark;
 }
 
+html.light {
+    color-scheme: light;
+}
+
 html {
     background-color: hsl(var(--background));
     scroll-behavior: smooth;
@@ -62,6 +66,33 @@ pre {
         --code-bg: 0 0% 0%;
         --code-fg: 0 0% 90%;
         --radius: 2px;
+    }
+
+    /* Light theme — clean white paper with deeper cyan brand */
+    html.light {
+        --background: 0 0% 100%;         /* #FFFFFF */
+        --surface: 0 0% 98%;             /* #FAFAFA */
+        --surface-2: 0 0% 95%;           /* #F2F2F2 */
+        --foreground: 0 0% 7%;           /* #111111 */
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 7%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 7%;
+        --primary: 189 94% 36%;          /* #06A5B8 — deeper cyan for white bg */
+        --primary-foreground: 0 0% 100%;
+        --secondary: 0 0% 96%;
+        --secondary-foreground: 0 0% 7%;
+        --muted: 0 0% 94%;
+        --muted-foreground: 0 0% 40%;    /* #666666 */
+        --accent: 270 70% 55%;           /* #7A3EDB — deeper violet */
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 72% 45%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 88%;              /* #E0E0E0 */
+        --input: 0 0% 88%;
+        --ring: 189 94% 36%;
+        --code-bg: 0 0% 7%;              /* keep code blocks dark for readability */
+        --code-fg: 0 0% 92%;
     }
 }
 
