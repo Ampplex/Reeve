@@ -403,20 +403,20 @@ export default function GraphSimulator() {
               <div>
                 <div className="eyebrow-muted mb-3">Current event</div>
                 {lastEvent.store && (
-                  <div className="border border-border bg-[hsl(var(--code-bg))] p-4 font-mono text-[12px] leading-relaxed">
+                  <div className="border border-border bg-[hsl(var(--code-bg))] text-[hsl(var(--code-fg))] p-4 font-mono text-[12px] leading-relaxed">
                     <span className="text-[hsl(var(--primary))]">store</span>
-                    <span className="text-muted-foreground">(&ldquo;</span>
-                    <span className="text-foreground">{lastEvent.store}</span>
-                    <span className="text-muted-foreground">&rdquo;)</span>
+                    <span className="text-neutral-500">(&ldquo;</span>
+                    <span className="text-[hsl(var(--code-fg))]">{lastEvent.store}</span>
+                    <span className="text-neutral-500">&rdquo;)</span>
                   </div>
                 )}
                 {lastEvent.query && (
                   <>
-                    <div className="border border-border bg-[hsl(var(--code-bg))] p-4 font-mono text-[12px] leading-relaxed">
+                    <div className="border border-border bg-[hsl(var(--code-bg))] text-[hsl(var(--code-fg))] p-4 font-mono text-[12px] leading-relaxed">
                       <span className="text-[hsl(var(--accent))]">query</span>
-                      <span className="text-muted-foreground">(&ldquo;</span>
-                      <span className="text-foreground">{lastEvent.query}</span>
-                      <span className="text-muted-foreground">&rdquo;)</span>
+                      <span className="text-neutral-500">(&ldquo;</span>
+                      <span className="text-[hsl(var(--code-fg))]">{lastEvent.query}</span>
+                      <span className="text-neutral-500">&rdquo;)</span>
                     </div>
                     {ANSWERS[t] && (
                       <div className="mt-3 space-y-2">
